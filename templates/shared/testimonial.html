@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'assets/web/lib/owlcarousel/assets/owl.carousel.min.css'%}">
+    <title>Testimonials</title>
+</head>
+
+<body>
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="text-center">
+                <h5 class="section-title ff-secondary text-center text-primary fw-normal">Testimonial</h5>
+                <h1 class="mb-5">Our Clients Say!!!</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel">
+                {% for i in testimonial %}
+                <div class="testimonial-item bg-transparent border rounded p-4">
+                    <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
+                    <p>{{ i.content }}</p>
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded-circle"
+                            src="{% if i.image %}{{ i.image.url }}{% else %}{% static 'assets/img/no_image.png' %}{% endif %}"
+                            style="width: 50px; height: 50px;">
+                        <div class="ps-3">
+                            <h5 class="mb-1">{{ i.name }}</h5>
+                            <small>{{ i.position }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'assets/web/lib/owlcarousel/owl.carousel.min.js'%}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.testimonial-carousel').owlCarousel({
+                items: 3,  // Change this to 3 to show three testimonials at a time
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                margin: 10 // Optional: Add margin between items
+            });
+        });
+    </script>
+</body>
+
+</html>
